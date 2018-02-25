@@ -46,6 +46,10 @@ Model mmodel;
         holder.detail.setTag(position);
 
 
+
+        holder.detail.setText(mmodel.getPlaygroundName());
+
+
         Picasso.with(context).load(mmodel.getImageName()).into(holder.name);
 
 
@@ -58,7 +62,7 @@ Model mmodel;
 
     class Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView name;
-        TextView detail;
+        TextView detail , nameg;
         LinearLayout lingrand;
 
         public Holder(View itemView) {
@@ -67,6 +71,8 @@ Model mmodel;
             name=(ImageView)itemView.findViewById(R.id.imggraund);
             lingrand = (LinearLayout) itemView.findViewById(R.id.linegrand);
              detail=(TextView)itemView.findViewById( R.id.detailsgraund);
+
+
 
             detail.setOnClickListener(this);
 
