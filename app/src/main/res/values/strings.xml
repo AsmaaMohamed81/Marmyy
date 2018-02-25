@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Marmy</string>
+    <string name="detail">Details</string>
+    <string name="year">year</string>
+    <string name="month">month</string>
+    <string name="day">day</string>
+    <string name="hour">hour</string>
+    <string name="sum">Total</string>
+    <string name="ryal">SR</string>
+    <string name="Map">Map</string>
+    <string name="header">List Playground</string>
+    <string name="orders">List Orders</string>
+    <string name="detail_sign">Don’t have an account yet?</string>
+    <string name="signup">Signup Now.</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="name_client">client name</string>
+    <string name="date">date</string>
+    <string name="update_password">update password</string>
+    <string name="update">update</string>
+    <string name="logout">Log out</string>
+
+
+    <string name="name_ground">ground name</string>
+    <string name="time">time</string>
+    <string name="delegate_name">delegate name</string>
+    <string name="cost">cost</string>
+    <string name="response"> list responses</string>
+    <string name="playground">Playgrounds</string>
+    <string name="profile"> Profile</string>
+    <string name="hurry_up">hurry up to ensure your reservition now</string>
+
+</resources>

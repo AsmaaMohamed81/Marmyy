@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<resources>
+
+
+    <string name="app_name">ملعبك</string>
+    <string name="detail">التفاصيل</string>
+
+    <string name="year">السنة</string>
+    <string name="month">الشهر</string>
+    <string name="day">اليوم</string>
+    <string name="hour">الساعه</string>
+
+    <string name="sum">المجموع</string>
+    <string name="ryal">ريال</string>
+    <string name="Map">الخريطه</string>
+
+    <string name="header">قائمه الملاعب</string>
+    <string name="orders">قائمه الطلبات </string>
+
+    <string name="detail_sign">لايوجد لديك حساب ؟</string>
+    <string name="signup">انشاء حساب .</string>
+    <string name="name_client">اسم العميل</string>
+    <string name="name_ground">اسم الملعب</string>
+    <string name="time">الوقت</string>
+    <string name="date">التاريخ</string>
+    <string name="delegate_name">اسم المندوب</string>
+    <string name="cost">السعر</string>
+    <string name="response">قائمه الردود</string>
+    <string name="playground">الملاعب</string>
+    <string name="profile"> الشخصيه</string>
+    <string name="hurry_up">سارع بتاكيد الحجز لان لتحصل على ملعبك</string>
+
+
+    <string name="update_password">تعديل كلمة السر </string>
+    <string name="update">تعديل</string>
+    <string name="logout">خروج </string>
+</resources>
