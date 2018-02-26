@@ -36,4 +36,7 @@
     <string name="update_password">تعديل كلمة السر </string>
     <string name="update">تعديل</string>
     <string name="logout">خروج </string>
+    <string name="phone">التلفون</string>
+    <string name="photo">تحميل الصوره</string>
+    <string name="send">ارسال</string>
 </resources>

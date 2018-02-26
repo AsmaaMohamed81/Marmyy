@@ -30,6 +30,7 @@ Model mmodel;
     public graundAdapter(Context context, List<Model> Array) {
         this.context = context;
         this.Array = Array;
+        this.home= (Home) context;
     }
 
     @Override
@@ -68,9 +69,9 @@ Model mmodel;
         public Holder(View itemView) {
             super(itemView);
 
-            name=(ImageView)itemView.findViewById(R.id.imggraund);
-            lingrand = (LinearLayout) itemView.findViewById(R.id.linegrand);
-             detail=(TextView)itemView.findViewById( R.id.detailsgraund);
+            name=itemView.findViewById(R.id.imggraund);
+            lingrand =  itemView.findViewById(R.id.linegrand);
+             detail=itemView.findViewById( R.id.detailsgraund);
 
 
 
@@ -84,11 +85,6 @@ Model mmodel;
         @Override
         public void onClick(final View view) {
 
-
-            new Thread(new Runnable() {
-                public void run() {
-                    // a potentially  time consuming task
-                    //            int position = (int) view.getTag();
                     int position = (int) view.getTag();
 
                     mmodel = Array.get(position);
@@ -101,14 +97,11 @@ Model mmodel;
                     i.putExtra("address", mmodel.getPlaygroundAddress());
                     i.putExtra("latitude", mmodel.getPlaygroundGoogleLat());
                     i.putExtra("longitude", mmodel.getPlaygroundGoogleLng());
-
                     i.putExtra("IdGround", mmodel.getPlaygroundIdPk());
                     i.putExtra("IdUser",home.id);
 
 
                     context.startActivity(i);
-                }
-            }).start();
 
 
 

@@ -60,7 +60,6 @@
         <activity
             android:name=".UI.Loogin"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".UI.ListMarma"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -81,6 +80,10 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".UI.gallary" />
         <activity android:name=".UI.gallrydetails" />
+        <activity android:name=".UI.ConfirmResrvation"
+            android:theme="@style/Theme.AppCompat.Light.Dialog">
+
+        </activity>
     </application>
 
 </manifest>

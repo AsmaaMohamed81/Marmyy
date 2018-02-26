@@ -57,7 +57,7 @@ public class Detail extends AppCompatActivity {
     private ProgressDialog pDialog;
     String msupplier,hours;
     Date c;
-    String id;
+    String client_id;
 
 
     @Override
@@ -113,7 +113,7 @@ public class Detail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(id==null){
+                if(client_id==null){
 
                     final AlertDialog.Builder alertadd = new AlertDialog.Builder(Detail.this);
                     LayoutInflater factory = LayoutInflater.from(Detail.this);
@@ -253,7 +253,8 @@ public class Detail extends AppCompatActivity {
                 }else {
                     hours="3";
                 }
-               // Toast.makeText(Detail.this, msupplier + "", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(Detail.this, msuppl
+                // ier + "", Toast.LENGTH_SHORT).show();
             ///    Toast.makeText(Detail.this, Scost + "", Toast.LENGTH_SHORT).show();
 
 
@@ -303,7 +304,7 @@ public class Detail extends AppCompatActivity {
         latitude = i.getDoubleExtra("latitude", 1.1);
         longitude = i.getDoubleExtra("longitude", 1.1);
         IDground = i.getStringExtra("IdGround");
-        id=i.getStringExtra("IdUser");
+        client_id=i.getStringExtra("IdUser");
     }
 
     private void intiatview() {
@@ -376,7 +377,7 @@ public class Detail extends AppCompatActivity {
 
         showpDialog();
 
-        IDuser = id;
+        IDuser = client_id;
         ClientID = IDuser;
         Date = date;
         GroundID = IDground;
@@ -418,7 +419,7 @@ public class Detail extends AppCompatActivity {
 
         showpDialog();
 
-        IDuser = id;
+        IDuser = client_id;
         ClientID = IDuser;
         Date = date;
         GroundID = IDground;
@@ -433,7 +434,6 @@ public class Detail extends AppCompatActivity {
                     hidepDialog();
 
                     Toast.makeText(Detail.this, hours + Date, Toast.LENGTH_SHORT).show();
-
 
                     if (response.body().getSuccess() == 1) {
                         // startActivity(new Intent(Detail.this, Home.class));

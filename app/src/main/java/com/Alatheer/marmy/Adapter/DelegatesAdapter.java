@@ -147,28 +147,6 @@ public class DelegatesAdapter extends RecyclerView.Adapter<DelegatesAdapter.Hold
 
             builder.show();
         }
-      /*  @Override
-        public void onClick(final View view) {
 
-
-            new Thread(new Runnable() {
-                public void run() {
-                    // a potentially  time consuming task
-                    //            int position = (int) view.getTag();
-                    int position = (int) view.getTag();
-
-                    mmodel = Array.get(position);
-
-                    Toast.makeText(context, "نم الموافقه ", Toast.LENGTH_SHORT).show();
-
-               //     Intent i = new Intent(context, Detail.class);
-
-                 //   context.startActivity(i);
-
-                }
-            }).start();
-
-
-        }*/
     }
 }

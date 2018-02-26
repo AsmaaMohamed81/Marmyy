@@ -1,6 +1,7 @@
 package com.Alatheer.marmy.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,9 +12,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Alatheer.marmy.API.Model.ClientOrderModel;
+import com.Alatheer.marmy.API.Model.MSG;
+import com.Alatheer.marmy.API.Model.User;
 import com.Alatheer.marmy.API.Service.APIClient;
 import com.Alatheer.marmy.API.Service.Services;
 import com.Alatheer.marmy.R;
+import com.Alatheer.marmy.UI.ConfirmResrvation;
+import com.Alatheer.marmy.UI.Detail;
+import com.Alatheer.marmy.UI.Home;
+import com.Alatheer.marmy.UI.Loogin;
 
 import java.util.List;
 
@@ -22,14 +29,18 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
+
 public class ClientOrdersAdapter extends RecyclerView.Adapter<ClientOrdersAdapter.Holder> {
     Context context;
     ClientOrderModel mmodel;
     List<ClientOrderModel> Array;
+    Home home;
+    String Reservation_id,name,phone;
 
     public ClientOrdersAdapter(Context context, List<ClientOrderModel> Array) {
         this.context = context;
         this.Array = Array;
+        this.home= (Home) context;
     }
 
     @Override
@@ -80,9 +91,27 @@ public class ClientOrdersAdapter extends RecyclerView.Adapter<ClientOrdersAdapte
 
             mmodel = Array.get(position);
           //  Toast.makeText(context, "success", Toast.LENGTH_SHORT).show();
-
-
             insure_reservation();
+
+            Services services=APIClient.getClient().create(Services.class);
+            Call<User> call=services.getData(home.id);
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    Intent i = new Intent(context, ConfirmResrvation.class);
+                    i.putExtra("client_id",home.id);
+                    i.putExtra("client_name",response.body().getUser_name());
+                    i.putExtra("client_phone",response.body().getMobile());
+                    i.putExtra("Reservation_id",mmodel.getReservation_id_fk());
+                    context.startActivity(i);
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+
+                }
+            });
+
         }
 
 
@@ -106,7 +135,14 @@ public class ClientOrdersAdapter extends RecyclerView.Adapter<ClientOrdersAdapte
 
                 if (response.body().getSuccess() == 1) {
 
-                    Toast.makeText(context, "تم تاكيد الحجز", Toast.LENGTH_SHORT).show();
+                    Reservation_id= response.body().getReservation_id_fk();
+                    Toast.makeText(context, ""+Reservation_id, Toast.LENGTH_SHORT).show();
+                  //  name=response.body().
+                 //   Intent i = new Intent(context, ConfirmResrvation.class);
+
+                  //  context.startActivity(i);
+
+                  //  Toast.makeText(context, "تم تاكيد الحجز", Toast.LENGTH_SHORT).show();
                   //  Toast.makeText(context, ""+, Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(context, "" + response.body().getOrder_id(), Toast.LENGTH_SHORT).show();
@@ -119,4 +155,10 @@ public class ClientOrdersAdapter extends RecyclerView.Adapter<ClientOrdersAdapte
             }
         });
     }
+
+    private void send_data(){
+
+
+}
+
 }

@@ -111,7 +111,17 @@ public interface Services {
                       @Field("password") String password);
 
 
+    @FormUrlEncoded
+    @POST("ReservationConfirmation/{client_id}")
+    Call<User> ReservationConfirmation(@Path("client_id") String client_id,
+                      @Field("transfer_name") String transfer_name,
+                      @Field("transfer_phone") String transfer_phone,
+                      @Field("transfer_img") String transfer_img,
+                      @Field("reservation_id_fk")String reservation_id_fk);
 
+
+    @GET("ReservationConfirmation/{client_id}")
+    Call<User>getData(@Path("client_id") String client_id);
 
 
 }

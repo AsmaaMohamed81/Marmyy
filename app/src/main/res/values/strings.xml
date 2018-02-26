@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Marmy</string>
+    <string name="app_name">Marma</string>
     <string name="detail">Details</string>
     <string name="year">year</string>
     <string name="month">month</string>
@@ -28,5 +28,8 @@
     <string name="playground">Playgrounds</string>
     <string name="profile"> Profile</string>
     <string name="hurry_up">hurry up to ensure your reservition now</string>
+    <string name="phone">phone</string>
+    <string name="photo">upload photo</string>
+    <string name="send">send</string>
 
 </resources>

@@ -26,7 +26,7 @@ import eu.long1.spacetablayout.SpaceTabLayout;
 
 public class Home extends AppCompatActivity {
     SpaceTabLayout tabLayout;
-   public static String id;
+  public String id;
    String delegate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
