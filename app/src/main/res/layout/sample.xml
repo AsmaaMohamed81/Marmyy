@@ -19,6 +19,6 @@ android:orientation="vertical"
         android:layout_height="wrap_content"
         android:textColor="@color/text"
         android:textSize="25dp"
-        android:text="This Old Date"/>
+        android:text="@string/AlertOldDate"/>
 
 </LinearLayout>

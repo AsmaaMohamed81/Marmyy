@@ -27,6 +27,11 @@
         app:icon_one="@drawable/listorder"
         app:icon_two="@drawable/list"
         app:icon_three="@drawable/profile"
+
+        app:text_one="@string/response"
+        app:text_two="@string/playground"
+        app:text_three="@string/profile"
+
         />
 
 </android.support.design.widget.CoordinatorLayout>

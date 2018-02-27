@@ -9,7 +9,9 @@
     <string name="ryal">SR</string>
     <string name="Map">Map</string>
     <string name="header">List Playground</string>
+
     <string name="orders">List Orders</string>
+
     <string name="detail_sign">Don’t have an account yet?</string>
     <string name="signup">Signup Now.</string>
     <string name="title_activity_maps">Map</string>
@@ -19,17 +21,30 @@
     <string name="update">update</string>
     <string name="logout">Log out</string>
 
-
+/////////////
     <string name="name_ground">ground name</string>
     <string name="time">time</string>
     <string name="delegate_name">delegate name</string>
     <string name="cost">cost</string>
-    <string name="response"> list responses</string>
+///////////////// Tabs
+    <string name="response">Responses</string>
     <string name="playground">Playgrounds</string>
     <string name="profile"> Profile</string>
+///////////////
     <string name="hurry_up">hurry up to ensure your reservition now</string>
     <string name="phone">phone</string>
     <string name="photo">upload photo</string>
     <string name="send">send</string>
+    <string name="responselist">List Orders</string>
+    <string name="profiledescreption">Hi there , I\'m using marmy App</string>
+    <string name="back">Back</string>
+    <string name="capacity">Capacity</string>
+    <string name="location">Location</string>
+    <string name="gallary">Gallary</string>
+    <string name="salary">Salary</string>
+    <string name="book">Book</string>
+    <string name="AlertOldDate">This Old Date</string>
+    <string name="AlertLog">PLZ Log IN First</string>
+    <string name="AlertchooseDate">You Should Choose Date First</string>
 
 </resources>

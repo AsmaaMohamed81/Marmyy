@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/text"
         android:textSize="25dp"
-        android:text="PLZ Log IN First"
+        android:text="@string/AlertLog"
         android:textStyle="bold"/>
 
 </LinearLayout>

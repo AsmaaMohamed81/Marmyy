@@ -29,7 +29,7 @@
                 android:drawableLeft="@drawable/arow"
                 android:drawablePadding="10dp"
                 android:gravity="center"
-                android:text="رجوع"
+                android:text="@string/back"
                 android:textColor="#ffffff"
                 android:textSize="25dp"
 
@@ -40,17 +40,27 @@
                 android:layout_height="120dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
+
                 android:src="@drawable/logo" />
         </RelativeLayout>
 
-        <ImageView
+        <TextView
             android:layout_width="180dp"
-            android:layout_height="130dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginTop="-50dp"
-            android:src="@drawable/detail" />
+            android:layout_marginTop="5dp"
+
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+
+            android:gravity="center"
+            android:text="@string/detail"
+
+            android:background="@drawable/detail" />
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -165,6 +175,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="0dp"
+                    android:layout_gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -196,14 +207,16 @@
 
 
                 </LinearLayout>
-
-                <ImageView
+                <TextView
                     android:id="@+id/book"
                     android:layout_width="70dp"
-                    android:layout_height="60dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="30dp"
-                    android:src="@drawable/book" />
+                    android:text="@string/book"
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimary"
+                    android:background="@drawable/book" />
+
             </LinearLayout>
 
 
@@ -262,7 +275,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
-                    android:text="سعة الملعب"
+                    android:text="@string/capacity"
                     android:textColor="#fff"
                     android:textSize="20dp" />
 
@@ -292,7 +305,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="صور الملعب"
+                    android:text="@string/gallary"
                     android:textColor="#fff"
                     android:textSize="20dp" />
 
@@ -322,7 +335,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
-                    android:text="موقع الملعب"
+                    android:text="@string/location"
                     android:textColor="#fff"
                     android:textSize="20dp" />
 
@@ -364,7 +377,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
-                    android:text="سعر الملعب"
+                    android:text="@string/salary"
                     android:textColor="#fff"
                     android:textSize="20dp" />
 
