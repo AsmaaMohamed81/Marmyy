@@ -67,7 +67,7 @@ home= (Home) getActivity();
 
                 Model.addAll(response.body());
                 adapter.notifyDataSetChanged();
-                Toast.makeText(getContext(), ""+home.id, Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getContext(), ""+home.id, Toast.LENGTH_SHORT).show();
             }
 
             @Override

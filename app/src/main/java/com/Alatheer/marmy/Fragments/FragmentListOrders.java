@@ -63,7 +63,7 @@ Home home;
             @Override
             public void onResponse(Call<List<ClientOrderModel>> call, Response<List<ClientOrderModel> >response) {
 
-                Toast.makeText(getContext(), home.id + "", Toast.LENGTH_LONG).show();
+              //  Toast.makeText(getContext(), home.id + "", Toast.LENGTH_LONG).show();
 
                 model.addAll( response.body());
                 adapter.notifyDataSetChanged();

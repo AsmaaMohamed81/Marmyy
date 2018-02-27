@@ -27,7 +27,9 @@ public class MainActivity extends AppCompatActivity {
         final Animation animation= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.splash);
         logo.startAnimation(animation);
 
-        Intent i = new Intent(MainActivity.this,Login.class);
+        animation.setDuration(3000);
+
+        Intent i = new Intent(MainActivity.this,Loogin.class);
         startActivity(i);
 
     }

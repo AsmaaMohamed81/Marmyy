@@ -136,7 +136,7 @@ public class ClientOrdersAdapter extends RecyclerView.Adapter<ClientOrdersAdapte
                 if (response.body().getSuccess() == 1) {
 
                     Reservation_id= response.body().getReservation_id_fk();
-                    Toast.makeText(context, ""+Reservation_id, Toast.LENGTH_SHORT).show();
+                //    Toast.makeText(context, ""+Reservation_id, Toast.LENGTH_SHORT).show();
                   //  name=response.body().
                  //   Intent i = new Intent(context, ConfirmResrvation.class);
 
@@ -145,7 +145,7 @@ public class ClientOrdersAdapter extends RecyclerView.Adapter<ClientOrdersAdapte
                   //  Toast.makeText(context, "تم تاكيد الحجز", Toast.LENGTH_SHORT).show();
                   //  Toast.makeText(context, ""+, Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(context, "" + response.body().getOrder_id(), Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(context, "" + response.body().getOrder_id(), Toast.LENGTH_SHORT).show();
                 }
             }
 

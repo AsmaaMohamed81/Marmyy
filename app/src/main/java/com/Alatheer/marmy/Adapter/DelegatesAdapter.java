@@ -90,7 +90,7 @@ public class DelegatesAdapter extends RecyclerView.Adapter<DelegatesAdapter.Hold
 
 
             add_cost();
-            Toast.makeText(context, mmodel.getOrderId() + cost, Toast.LENGTH_SHORT).show();
+           // Toast.makeText(context, mmodel.getOrderId() + cost, Toast.LENGTH_SHORT).show();
 
 
         }
@@ -125,9 +125,9 @@ public class DelegatesAdapter extends RecyclerView.Adapter<DelegatesAdapter.Hold
 
                             if (response.body().getSuccess() == 1) {
 
-                                Toast.makeText(context, "success", Toast.LENGTH_SHORT).show();
+                            //    Toast.makeText(context, "success", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
                             }
                         }
 

@@ -21,6 +21,7 @@ import com.Alatheer.marmy.Fragments.FragmentListOrders;
 import com.Alatheer.marmy.Fragments.FragmentListPlayground;
 import com.Alatheer.marmy.Preferense;
 import com.Alatheer.marmy.R;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -134,7 +135,7 @@ public class Loogin extends AppCompatActivity {
 
         Services service = APIClient.getClient().create(Services.class);
 
-        Call<MSG> userCall = service.userLogIn(user,pass);
+        Call<MSG> userCall = service.userLogIn(user,pass, FirebaseInstanceId.getInstance().getToken());
 
 
         userCall.enqueue(new Callback<MSG>() {
@@ -149,7 +150,7 @@ public class Loogin extends AppCompatActivity {
                     id = response.body().getId();
 
                     if (response.body().getIs_delegate() == 1) {
-
+                        Toast.makeText(Loogin.this, ""+FirebaseInstanceId.getInstance().getToken(), Toast.LENGTH_SHORT).show();
                         Preferense pref = new Preferense(Loogin.this);
                         pref.CreateSharedPref(id,"1");
                         Intent intent = new Intent(Loogin.this, Home.class);
@@ -164,8 +165,7 @@ public class Loogin extends AppCompatActivity {
                     }else {
 
 
-
-
+                        Toast.makeText(Loogin.this, ""+FirebaseInstanceId.getInstance().getToken(), Toast.LENGTH_SHORT).show();
                         Preferense pref = new Preferense(Loogin.this);
                         pref.CreateSharedPref(id,"0");
                         Intent intent = new Intent(Loogin.this, Home.class);
@@ -179,7 +179,7 @@ public class Loogin extends AppCompatActivity {
                 }
                     // finish();
                 } else {
-                    Toast.makeText(Loogin.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(Loogin.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -219,7 +219,7 @@ public class Loogin extends AppCompatActivity {
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+     //   Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
 
         login.setEnabled(true);
     }

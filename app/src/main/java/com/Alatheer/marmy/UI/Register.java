@@ -16,6 +16,7 @@ import com.Alatheer.marmy.API.Model.User;
 import com.Alatheer.marmy.API.Service.APIClient;
 import com.Alatheer.marmy.Preferense;
 import com.Alatheer.marmy.R;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import me.anwarshahriar.calligrapher.Calligrapher;
 import retrofit2.Call;
@@ -144,7 +145,7 @@ public class Register extends AppCompatActivity {
         Services service = APIClient.getClient().create(Services.class);
 
 
-        Call<MSG> userCall = service.userSignUp(name, uemail,pass, mobile);
+        Call<MSG> userCall = service.userSignUp(name, uemail,pass, mobile, FirebaseInstanceId.getInstance().getToken());
        // startActivity(new Intent(Register.this, Home.class));
 
         userCall.enqueue(new Callback<MSG>() {
@@ -152,15 +153,15 @@ public class Register extends AppCompatActivity {
             public void onResponse(Call<MSG> call, Response<MSG> response) {
                 hidepDialog();
                 //onSignupSuccess();
-                Log.d("onResponse", "" + response.body().getMessage());
+             //   Log.d("onResponse", "" + response.body().getMessage());
 
 
-                if (response.body().getSuccess() == 1) {
-                   Intent intent=new Intent(Register.this, Loogin.class);
-                   startActivity(intent);
+                if (response.isSuccessful()) {
+                   Intent i=new Intent(Register.this, MainActivity.class);
+                   startActivity(i);
                     finish();
                 } else {
-                    Toast.makeText(Register.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(Register.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -182,28 +183,5 @@ public class Register extends AppCompatActivity {
             pDialog.dismiss();
     }
 
-    /*private void sendNetworkRequest(User user){
-        Retrofit.Builder builder=new Retrofit.Builder()
-                .baseUrl("http://clup.alatheertech.com/Api/")
-                .addConverterFactory(GsonConverterFactory.create());
-        Retrofit retrofit=builder.build();
-        Services client=retrofit.create(Services.class);
-       Call<User>call= client.createAccount(user);
-       call.enqueue(new Callback<User>() {
-           @Override
-           public void onResponse(Call<User> call, Response<User> response) {
-               Toast.makeText(Register.this, "Yeah ,User Id ", Toast.LENGTH_SHORT).show();
-               Intent i=new Intent(Register.this,Home.class);
-               startActivity(i);
-           }
 
-           @Override
-           public void onFailure(Call<User> call, Throwable t) {
-
-               Toast.makeText(Register.this, "somthing wrong", Toast.LENGTH_SHORT).show();
-
-           }
-       });
-
-    }*/
 }

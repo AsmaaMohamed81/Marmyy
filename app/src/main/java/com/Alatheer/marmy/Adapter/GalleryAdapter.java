@@ -83,7 +83,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             Intent i = new Intent(context,gallrydetails.class);
 
-            Toast.makeText(context, gallryyyy.getImg()+"", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(context, gallryyyy.getImg()+"", Toast.LENGTH_SHORT).show();
             i.putExtra("img",gallryyyy.getImg());
             context.startActivity(i);
 

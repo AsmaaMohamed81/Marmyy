@@ -73,7 +73,7 @@ public class ListMarma extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<com.Alatheer.marmy.API.Model.Model>> call, Throwable t) {
 
-                Toast.makeText(ListMarma.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(ListMarma.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -122,7 +122,7 @@ public class ListMarma extends AppCompatActivity {
             finish();
             Log.e("pref", preferences.getString("user_id", "loggedout"));
         } else {
-            Toast.makeText(this, "check network connection.", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "check network connection.", Toast.LENGTH_SHORT).show();
         }
 
     }

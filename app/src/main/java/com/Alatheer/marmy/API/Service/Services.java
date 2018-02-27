@@ -40,14 +40,16 @@ public interface Services {
     Call<MSG> userSignUp(@Field("user_name") String name,
                          @Field("email") String email,
                          @Field("password") String password,
-                         @Field("mobile") String mobile);
+                         @Field("mobile") String mobile,
+                         @Field("token_id") String token_id);
 
 
 
     @FormUrlEncoded
     @POST("Login")
     Call<MSG> userLogIn(@Field("user_name") String user_name,
-                        @Field("password") String password);
+                        @Field("password") String password,
+                        @Field("token_id") String token_id);
 
 
     @FormUrlEncoded

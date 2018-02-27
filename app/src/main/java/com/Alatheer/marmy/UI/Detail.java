@@ -388,13 +388,13 @@ public class Detail extends AppCompatActivity {
             public void onResponse(Call<MSG> call, Response<MSG> response) {
                 hidepDialog();
 
-                Toast.makeText(Detail.this, "mm"+hours + Date, Toast.LENGTH_SHORT).show();
+            ///    Toast.makeText(Detail.this, "mm"+hours + Date, Toast.LENGTH_SHORT).show();
 
 
                 if (response.body().getSuccess() == 1) {
                     // startActivity(new Intent(Detail.this, Home.class));
 
-                        Toast.makeText(Detail.this, "success", Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(Detail.this, "success", Toast.LENGTH_SHORT).show();
                         finish();
 
                     //Toast.makeText(Detail.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
@@ -433,7 +433,7 @@ public class Detail extends AppCompatActivity {
                 public void onResponse(Call<MSG> call, Response<MSG> response) {
                     hidepDialog();
 
-                    Toast.makeText(Detail.this, hours + Date, Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(Detail.this, hours + Date, Toast.LENGTH_SHORT).show();
 
                     if (response.body().getSuccess() == 1) {
                         // startActivity(new Intent(Detail.this, Home.class));
@@ -460,11 +460,11 @@ public class Detail extends AppCompatActivity {
 
                             dialog.show();
                         }else {
-                            Toast.makeText(Detail.this, "success", Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(Detail.this, "success", Toast.LENGTH_SHORT).show();
                             finish();
                         }
                     } else {
-                        Toast.makeText(Detail.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(Detail.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
 
