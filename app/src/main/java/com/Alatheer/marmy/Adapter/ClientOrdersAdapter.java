@@ -114,7 +114,6 @@ public class ClientOrdersAdapter extends RecyclerView.Adapter<ClientOrdersAdapte
 
         }
 
-
     }
 
     private void insure_reservation() {
