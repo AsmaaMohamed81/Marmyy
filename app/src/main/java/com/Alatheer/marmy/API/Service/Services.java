@@ -1,15 +1,14 @@
 package com.Alatheer.marmy.API.Service;
 
 
-import com.Alatheer.marmy.API.Model.AllDelegateModel;
-import com.Alatheer.marmy.API.Model.ClientOrderModel;
-import com.Alatheer.marmy.API.Model.DelegateOrder;
-import com.Alatheer.marmy.API.Model.Model;
-import com.Alatheer.marmy.API.Model.MSG;
-import com.Alatheer.marmy.API.Model.Orders;
-import com.Alatheer.marmy.API.Model.ResponseModel;
-import com.Alatheer.marmy.API.Model.User;
-import com.Alatheer.marmy.API.Model.gallry;
+import com.Alatheer.marmy.Model.AllDelegateModel;
+import com.Alatheer.marmy.Model.ClientOrderModel;
+import com.Alatheer.marmy.Model.DelegateOrder;
+import com.Alatheer.marmy.Model.Model;
+import com.Alatheer.marmy.Model.MSG;
+import com.Alatheer.marmy.Model.ResponseModel;
+import com.Alatheer.marmy.Model.User;
+import com.Alatheer.marmy.Model.gallry;
 
 import java.util.ArrayList;
 import java.util.List;

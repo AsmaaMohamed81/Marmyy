@@ -1,4 +1,4 @@
-package com.Alatheer.marmy.API.Model;
+package com.Alatheer.marmy.Model;
 
 
 import com.google.gson.annotations.SerializedName;

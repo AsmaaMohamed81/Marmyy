@@ -8,9 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.Alatheer.marmy.API.Service.APIClient;
 import com.Alatheer.marmy.API.Service.Services;
@@ -28,7 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ListMarma extends AppCompatActivity {
-    ArrayList<com.Alatheer.marmy.API.Model.Model> Model;
+    ArrayList<com.Alatheer.marmy.Model.Model> Model;
     graundAdapter adapter;
     RecyclerView recyclerView;
     String id;
@@ -59,11 +57,11 @@ public class ListMarma extends AppCompatActivity {
 
 
         Services service = APIClient.getClient().create(Services.class);
-        Call<List<com.Alatheer.marmy.API.Model.Model>> call = service.getgroundData();
+        Call<List<com.Alatheer.marmy.Model.Model>> call = service.getgroundData();
 
-        call.enqueue(new Callback<List<com.Alatheer.marmy.API.Model.Model>>() {
+        call.enqueue(new Callback<List<com.Alatheer.marmy.Model.Model>>() {
             @Override
-            public void onResponse(Call<List<com.Alatheer.marmy.API.Model.Model>> call, Response<List<com.Alatheer.marmy.API.Model.Model>>response) {
+            public void onResponse(Call<List<com.Alatheer.marmy.Model.Model>> call, Response<List<com.Alatheer.marmy.Model.Model>>response) {
 
                 Model.addAll(response.body());
                 adapter.notifyDataSetChanged();
@@ -71,7 +69,7 @@ public class ListMarma extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<com.Alatheer.marmy.API.Model.Model>> call, Throwable t) {
+            public void onFailure(Call<List<com.Alatheer.marmy.Model.Model>> call, Throwable t) {
 
              //   Toast.makeText(ListMarma.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
 

@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
@@ -18,17 +17,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.Alatheer.marmy.API.Model.ClientOrderModel;
-import com.Alatheer.marmy.API.Model.ResponseModel;
-import com.Alatheer.marmy.API.Model.User;
+import com.Alatheer.marmy.Model.User;
 import com.Alatheer.marmy.API.Service.APIClient;
 import com.Alatheer.marmy.API.Service.Services;
 import com.Alatheer.marmy.Preferense;
 import com.Alatheer.marmy.R;
 import com.Alatheer.marmy.UI.Home;
 import com.Alatheer.marmy.UI.Loogin;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

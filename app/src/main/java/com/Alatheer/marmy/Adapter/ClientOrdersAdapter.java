@@ -9,18 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.Alatheer.marmy.API.Model.ClientOrderModel;
-import com.Alatheer.marmy.API.Model.MSG;
-import com.Alatheer.marmy.API.Model.User;
+import com.Alatheer.marmy.Model.ClientOrderModel;
+import com.Alatheer.marmy.Model.User;
 import com.Alatheer.marmy.API.Service.APIClient;
 import com.Alatheer.marmy.API.Service.Services;
 import com.Alatheer.marmy.R;
 import com.Alatheer.marmy.UI.ConfirmResrvation;
-import com.Alatheer.marmy.UI.Detail;
 import com.Alatheer.marmy.UI.Home;
-import com.Alatheer.marmy.UI.Loogin;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.Alatheer.marmy.API.Model;
+package com.Alatheer.marmy.Model;
 
 /**
  * Created by m on 2/20/2018.

@@ -1,6 +1,4 @@
-package com.Alatheer.marmy.API.Model;
-
-import java.util.Collection;
+package com.Alatheer.marmy.Model;
 
 /**
  * Created by elashry on 2/21/2018.
