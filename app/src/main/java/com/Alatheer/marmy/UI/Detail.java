@@ -46,7 +46,8 @@ public class Detail extends AppCompatActivity {
     final ArrayList seletedItems = new ArrayList();
     Spinner spinner;
     TextView name, address, capicty, cost,dateall, map,total,back;
-    ImageView img, book, imgs;
+    ImageView img, imgs;
+    TextView book;
     ArrayList<AllDelegateModel> delegate;
     Double latitude, longitude;
     String Sname, Scost, Scapacity, SImg, Saddress, IDuser, IDground, formattedDate, date;
@@ -202,7 +203,10 @@ public class Detail extends AppCompatActivity {
                                     }
 
                                 }
-                            }).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            }).setPositiveButton("OK",
+
+
+                                    new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int id) {
 

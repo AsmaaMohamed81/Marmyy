@@ -163,6 +163,7 @@ public class Loogin extends AppCompatActivity {
                     //    Toast.makeText(Loogin.this, "" + response.body().getId(), Toast.LENGTH_SHORT).show();
 
                     }else {
+                        Log.v("gggg",FirebaseInstanceId.getInstance().getToken());
 
 
                         Toast.makeText(Loogin.this, ""+FirebaseInstanceId.getInstance().getToken(), Toast.LENGTH_SHORT).show();

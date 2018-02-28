@@ -3,8 +3,10 @@ package com.Alatheer.marmy.UI;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Alatheer.marmy.API.Model.MSG;
@@ -22,18 +25,23 @@ import com.Alatheer.marmy.API.Service.APIClient;
 import com.Alatheer.marmy.API.Service.Services;
 import com.Alatheer.marmy.R;
 
+import java.io.File;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class ConfirmResrvation extends Activity {
+public class ConfirmResrvation extends AppCompatActivity {
 
     EditText name,phone;
     ImageView img;
-    ImageButton upload;
+    ImageView upload;
+    TextView textim;
     Button send;
     String client_id,client_name,client_phone, picturePath,Reservation_id;
+    private String selectedImagePath;
+
     private static int RESULT_LOAD_IMAGE = 1;
 
     @Override
@@ -45,6 +53,7 @@ public class ConfirmResrvation extends Activity {
         phone=findViewById(R.id.edtphone);
         upload=findViewById(R.id.btnupload);
         send=findViewById(R.id.btnsend);
+        textim=findViewById(R.id.textimg);
         get_intent();
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +61,7 @@ public class ConfirmResrvation extends Activity {
                 Intent i = new Intent(
                         Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                i.setType("image/*");
 
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
             }
@@ -73,6 +83,8 @@ public class ConfirmResrvation extends Activity {
 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
+
+
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
             Cursor cursor = getContentResolver().query(selectedImage,
@@ -80,12 +92,16 @@ public class ConfirmResrvation extends Activity {
             cursor.moveToFirst();
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-             picturePath = cursor.getString(columnIndex);
+            picturePath = cursor.getString(columnIndex);
             cursor.close();
-          //  img=findViewById(R.id.img);
 
-          //  img.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-           // Toast.makeText(this, ""+picturePath, Toast.LENGTH_SHORT).show();
+            upload.setImageURI(selectedImage);
+            textim.setText(picturePath);
+
+
+            //Toast.makeText(this, ""+picturePath, Toast.LENGTH_SHORT).show();
+
+
 
         }
 
@@ -103,7 +119,7 @@ public class ConfirmResrvation extends Activity {
 
                 if (response.isSuccessful()){
 
-                   // Toast.makeText(ConfirmResrvation.this, ""+Reservation_id, Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(ConfirmResrvation.this, ""+Reservation_id, Toast.LENGTH_SHORT).show();
                 }
             }
 
