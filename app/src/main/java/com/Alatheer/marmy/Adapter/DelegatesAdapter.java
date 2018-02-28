@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.Alatheer.marmy.Model.DelegateOrder;
 import com.Alatheer.marmy.Model.ResponseModel;
@@ -115,7 +116,7 @@ public class DelegatesAdapter extends RecyclerView.Adapter<DelegatesAdapter.Hold
                     Services service = APIClient.getClient().create(Services.class);
 
 
-                    Call<ResponseModel> userCall = service.response(mmodel.getOrderId(), cost);
+                    Call<ResponseModel> userCall = service.response(mmodel.getOrderId(),mmodel.getClientIdFk(), cost);
                     // startActivity(new Intent(Register.this, ListMarma.class));
 
                     userCall.enqueue(new Callback<ResponseModel>() {
@@ -123,11 +124,12 @@ public class DelegatesAdapter extends RecyclerView.Adapter<DelegatesAdapter.Hold
                         public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
 
 
-                            if (response.body().getSuccess() == 1) {
+                            if (response.isSuccessful()) {
 
+                                Toast.makeText(context, ""+mmodel.getOrderId()+"  "+mmodel.getClientIdFk(), Toast.LENGTH_SHORT).show();
                             //    Toast.makeText(context, "success", Toast.LENGTH_SHORT).show();
                             } else {
-                              //  Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
+                             Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
                             }
                         }
 

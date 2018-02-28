@@ -3,12 +3,14 @@ package com.Alatheer.marmy.Fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.Alatheer.marmy.Adapter.DelegatesAdapter;
 import com.Alatheer.marmy.Model.ClientOrderModel;
 import com.Alatheer.marmy.API.Service.APIClient;
 import com.Alatheer.marmy.API.Service.Services;
@@ -30,7 +32,9 @@ public class FragmentListOrders extends Fragment {
     ClientOrdersAdapter adapter;
     RecyclerView recyclerView;
     //String id;
-Home home;
+    private LinearLayoutManager mLayoutManager;
+
+    Home home;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -46,15 +50,30 @@ Home home;
 //
 //        Toast.makeText(getContext(), id + "", Toast.LENGTH_LONG).show();
 
-        recyclerView = view.findViewById(R.id.recyc_orders);
-        model = new ArrayList<>();
+    /*    mLayoutManager=new LinearLayoutManager(getContext());
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
+        recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setHasFixedSize(true);
 
         adapter = new ClientOrdersAdapter(getContext(), model);
         recyclerView.setAdapter(adapter);
+*/
 
+        recyclerView = view.findViewById(R.id.recyc_orders);
+
+        model = new ArrayList<>();
+
+        mLayoutManager=new LinearLayoutManager(getContext());
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
+
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setHasFixedSize(true);
+
+        adapter = new ClientOrdersAdapter(getContext(), model);
+        recyclerView.setAdapter(adapter);
 
         Services service = APIClient.getClient().create(Services.class);
         Call<List<ClientOrderModel>> call = service.getresponse(home.id);
@@ -78,11 +97,6 @@ Home home;
 
             }
         });
-
-
-
-
-
 
         return view;
     }
