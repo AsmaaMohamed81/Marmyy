@@ -1,39 +1,28 @@
 package com.Alatheer.marmy.UI;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.Alatheer.marmy.Model.MSG;
 import com.Alatheer.marmy.Model.User;
 import com.Alatheer.marmy.API.Service.APIClient;
 import com.Alatheer.marmy.API.Service.Services;
 import com.Alatheer.marmy.R;
-
-import java.io.File;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
 public class ConfirmResrvation extends AppCompatActivity {
-
     EditText name,phone;
     ImageView img;
     ImageView upload;
@@ -41,7 +30,6 @@ public class ConfirmResrvation extends AppCompatActivity {
     Button send;
     String client_id,client_name,client_phone, picturePath,Reservation_id;
     private String selectedImagePath;
-
     private static int RESULT_LOAD_IMAGE = 1;
 
     @Override
@@ -109,17 +97,18 @@ public class ConfirmResrvation extends AppCompatActivity {
 
 
     private void sendData(){
-
-
         Services services=APIClient.getClient().create(Services.class);
         Call<User> call=services.ReservationConfirmation(client_id,name.getText().toString(),phone.getText().toString(),picturePath,Reservation_id);
-        call.enqueue(new Callback<User>() {
+        call.enqueue(new  Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
 
                 if (response.isSuccessful()){
 
-                    // Toast.makeText(ConfirmResrvation.this, ""+Reservation_id, Toast.LENGTH_SHORT).show();
+          Toast.makeText(ConfirmResrvation.this, "SUCCESS", Toast.LENGTH_SHORT).show();
+                    textim.setText("");
+
+
                 }
             }
 

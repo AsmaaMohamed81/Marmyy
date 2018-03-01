@@ -12,7 +12,6 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
-
         android:orientation="horizontal">
 
         <TextView
@@ -47,7 +46,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:background="@color/colorPrimary"
-        android:paddingRight="5dp" />
+    />
 
 
     <LinearLayout
@@ -55,19 +54,20 @@
         android:layout_height="40dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-
         android:orientation="horizontal">
 
         <TextView
+
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@color/text"
             android:gravity="center"
             android:paddingRight="5dp"
-            android:text="@string/delegate_name"
             android:textColor="@color/colorPrimary"
-            android:textSize="17dp" />
+            android:textSize="17dp"
+            android:text="@string/delegate_name"
+           />
 
         <TextView
             android:id="@+id/delegate_name"
@@ -79,7 +79,6 @@
             android:paddingRight="5dp"
             android:text=" محمد العشرى"
             android:textColor="@color/colorPrimary"
-
             android:textSize="17dp" />
 
 
@@ -90,7 +89,6 @@
         android:layout_height="1dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-
         android:background="@color/colorPrimary"
         android:paddingRight="5dp" />
 
@@ -100,7 +98,6 @@
         android:layout_height="40dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-
         android:orientation="horizontal">
 
         <TextView
