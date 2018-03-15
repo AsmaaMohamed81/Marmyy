@@ -55,4 +55,7 @@
     <string name="AlertOldDate">"لقد اخترت تاريخ قديم "</string>
     <string name="AlertLog">"سجل دخول اولا  "</string>
     <string name="AlertchooseDate">يجب اختيار التاريخ قبل الحجز</string>
+    <string name="addprofile">اضافه صوره شخصيه</string>
+    <string name="whyadd">سبب الانضمام</string>
+    <string name="endam">انضم الينا</string>
 </resources>
