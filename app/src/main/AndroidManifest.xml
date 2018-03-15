@@ -23,7 +23,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
         <activity
-            android:name=".UI.mandopRequest"
+            android:name=".UI.Loogin"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -82,7 +82,8 @@
         <activity
             android:name=".UI.ConfirmResrvation"
             android:theme="@style/Theme.AppCompat.Light.Dialog"></activity>
-        <activity android:name=".UI.Loogin"></activity>
+        <activity android:name=".UI.mandopRequest"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"></activity>
     </application>
 
 </manifest>

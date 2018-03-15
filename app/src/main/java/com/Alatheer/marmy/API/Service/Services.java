@@ -4,6 +4,7 @@ package com.Alatheer.marmy.API.Service;
 import com.Alatheer.marmy.Model.AllDelegateModel;
 import com.Alatheer.marmy.Model.ClientOrderModel;
 import com.Alatheer.marmy.Model.DelegateOrder;
+import com.Alatheer.marmy.Model.MessageResponse;
 import com.Alatheer.marmy.Model.Model;
 import com.Alatheer.marmy.Model.MSG;
 import com.Alatheer.marmy.Model.ResponseModel;
@@ -34,6 +35,7 @@ public interface Services {
     Call<List<AllDelegateModel>> getDelegate();
 
 
+
     @FormUrlEncoded
     @POST("InsertRegistration")
     Call<MSG> userSignUp(@Field("user_name") String name,
@@ -49,6 +51,13 @@ public interface Services {
     Call<MSG> userLogIn(@Field("user_name") String user_name,
                         @Field("password") String password,
                         @Field("token_id") String token_id);
+
+    @FormUrlEncoded
+    @POST("OrdersBeDelegate")
+    Call<MessageResponse> mandopRequest (@Field("user_id_fk") String id,
+                                         @Field("person_image") String imgprofile,
+                                         @Field("person_license") String imgcard,
+                                         @Field("person_reson") String seson);
 
 
     @FormUrlEncoded

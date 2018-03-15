@@ -23,8 +23,8 @@
 
         <ImageView
             android:id="@+id/profileimg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/image"/>
         <TextView
             android:layout_width="wrap_content"
@@ -44,8 +44,8 @@
 
         <ImageView
             android:id="@+id/cardimg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/image"/>
         <TextView
             android:layout_width="wrap_content"
@@ -57,7 +57,8 @@
     </LinearLayout>
     </LinearLayout>
 
-    <TextView
+    <EditText
+        android:id="@+id/reson"
         android:layout_width="match_parent"
         android:background="@color/white"
         android:textColor="@color/colorPrimaryDark"
@@ -70,6 +71,7 @@
         android:layout_height="160dp" />
 
     <Button
+        android:id="@+id/endam"
         android:layout_width="wrap_content"
         android:text="@string/endam"
         android:layout_gravity="center_horizontal"
