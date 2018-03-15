@@ -11,10 +11,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.Alatheer.marmy.API.Service.Services;
-import com.Alatheer.marmy.API.Model.MSG;
-import com.Alatheer.marmy.API.Model.User;
+import com.Alatheer.marmy.Model.MSG;
+import com.Alatheer.marmy.Model.User;
 import com.Alatheer.marmy.API.Service.APIClient;
-import com.Alatheer.marmy.Preferense;
 import com.Alatheer.marmy.R;
 import com.google.firebase.iid.FirebaseInstanceId;
 

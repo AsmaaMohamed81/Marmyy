@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.Alatheer.marmy.API.Model.Model;
+import com.Alatheer.marmy.Model.Model;
 import com.Alatheer.marmy.R;
 import com.Alatheer.marmy.UI.Detail;
 import com.Alatheer.marmy.UI.Home;

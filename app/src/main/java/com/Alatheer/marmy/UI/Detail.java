@@ -19,10 +19,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.Alatheer.marmy.API.Model.AllDelegateModel;
+import com.Alatheer.marmy.Model.AllDelegateModel;
 import com.Alatheer.marmy.API.Service.APIClient;
 import com.Alatheer.marmy.API.Service.Services;
-import com.Alatheer.marmy.API.Model.MSG;
+import com.Alatheer.marmy.Model.MSG;
 import com.Alatheer.marmy.Fragments.FragmentListOrders;
 import com.Alatheer.marmy.R;
 import com.squareup.picasso.Picasso;

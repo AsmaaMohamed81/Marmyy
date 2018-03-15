@@ -1,23 +1,15 @@
 package com.Alatheer.marmy.UI;
 
-import android.app.Service;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.Alatheer.marmy.API.Model.MSG;
-import com.Alatheer.marmy.API.Model.Model;
-import com.Alatheer.marmy.API.Model.gallry;
+import com.Alatheer.marmy.Model.gallry;
 import com.Alatheer.marmy.API.Service.APIClient;
 import com.Alatheer.marmy.API.Service.Services;
 import com.Alatheer.marmy.Adapter.GalleryAdapter;
-import com.Alatheer.marmy.Adapter.graundAdapter;
 import com.Alatheer.marmy.R;
 
 import java.util.ArrayList;

@@ -3,14 +3,13 @@ package com.Alatheer.marmy.Fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.Alatheer.marmy.API.Model.DelegateOrder;
+import com.Alatheer.marmy.Model.DelegateOrder;
 import com.Alatheer.marmy.API.Service.APIClient;
 import com.Alatheer.marmy.API.Service.Services;
 import com.Alatheer.marmy.Adapter.DelegatesAdapter;
@@ -30,13 +29,15 @@ public class FragmentDelegatesOrders extends Fragment {
     ArrayList<DelegateOrder> model;
     DelegatesAdapter adapter;
     RecyclerView recyclerView;
+    private LinearLayoutManager mLayoutManager;
+
     //String id;
 Home home;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view= inflater.inflate(R.layout.fragment_list_delegete_orders, container, false);
-home= (Home) getActivity();
+        home= (Home) getActivity();
         Calligrapher calligrapher = new Calligrapher(getContext());
         calligrapher.setFont(getActivity(), "JannaLT-Regular.ttf", true);
 
@@ -46,7 +47,11 @@ home= (Home) getActivity();
         recyclerView = view.findViewById(R.id.recyc_delegate);
         model = new ArrayList<>();
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
+        mLayoutManager=new LinearLayoutManager(getContext());
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
+
+        recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setHasFixedSize(true);
 
         adapter = new DelegatesAdapter(getContext(), model);

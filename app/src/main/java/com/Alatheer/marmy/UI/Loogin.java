@@ -12,22 +12,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.Alatheer.marmy.API.Model.User;
+import com.Alatheer.marmy.Model.User;
 import com.Alatheer.marmy.API.Service.APIClient;
 import com.Alatheer.marmy.API.Service.Services;
-import com.Alatheer.marmy.API.Model.MSG;
-import com.Alatheer.marmy.Fragments.FragmentListOrders;
-import com.Alatheer.marmy.Fragments.FragmentListPlayground;
+import com.Alatheer.marmy.Model.MSG;
 import com.Alatheer.marmy.Preferense;
 import com.Alatheer.marmy.R;
 import com.google.firebase.iid.FirebaseInstanceId;
-
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-
 import me.anwarshahriar.calligrapher.Calligrapher;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -143,7 +138,7 @@ public class Loogin extends AppCompatActivity {
             public void onResponse(Call<MSG> call, Response<MSG> response) {
                 hidepDialog();
 
-                if (response.body().getSuccess() == 1) {
+                if (response.isSuccessful()) {
 
 
                     items = new String[users.size()];
@@ -151,6 +146,7 @@ public class Loogin extends AppCompatActivity {
 
                     if (response.body().getIs_delegate() == 1) {
                         Toast.makeText(Loogin.this, ""+FirebaseInstanceId.getInstance().getToken(), Toast.LENGTH_SHORT).show();
+                        Log.e("mm",FirebaseInstanceId.getInstance().getToken());
                         Preferense pref = new Preferense(Loogin.this);
                         pref.CreateSharedPref(id,"1");
                         Intent intent = new Intent(Loogin.this, Home.class);
@@ -158,14 +154,10 @@ public class Loogin extends AppCompatActivity {
                         intent.putExtra("isdelegate","1");
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
-
                         finish();
                     //    Toast.makeText(Loogin.this, "" + response.body().getId(), Toast.LENGTH_SHORT).show();
 
                     }else {
-                        Log.v("gggg",FirebaseInstanceId.getInstance().getToken());
-
-
                         Toast.makeText(Loogin.this, ""+FirebaseInstanceId.getInstance().getToken(), Toast.LENGTH_SHORT).show();
                         Preferense pref = new Preferense(Loogin.this);
                         pref.CreateSharedPref(id,"0");
@@ -180,7 +172,7 @@ public class Loogin extends AppCompatActivity {
                 }
                     // finish();
                 } else {
-                  //  Toast.makeText(Loogin.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Loogin.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 

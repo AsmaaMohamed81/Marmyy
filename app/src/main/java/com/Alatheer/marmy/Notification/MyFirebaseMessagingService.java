@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.Alatheer.marmy.Fragments.FragmentListOrders;
 import com.Alatheer.marmy.R;
 import com.Alatheer.marmy.UI.Home;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -52,5 +53,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(0, notificationBuilder.build());
+
+        Intent notificationIntent = new Intent(this, Home.class);
+        notificationIntent.setAction(Intent.ACTION_MAIN);
+        notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        // set intent so it does n ot start a new activity
+        PendingIntent intent1 = PendingIntent.getActivity(this, 1, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_ONE_SHOT);
+        notificationBuilder.setContentIntent(intent1);
+
+       // this.startForeground(NOTIFICATION_ID_UPLOADING_PROGRESS, notificationBuilder.build());
+
+
     }
+
 }
