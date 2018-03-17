@@ -81,9 +81,11 @@
         <activity android:name=".UI.gallrydetails" />
         <activity
             android:name=".UI.ConfirmResrvation"
-            android:theme="@style/Theme.AppCompat.Light.Dialog"></activity>
-        <activity android:name=".UI.mandopRequest"
-            android:theme="@style/Theme.AppCompat.Light.Dialog"></activity>
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".UI.mandopRequest"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity android:name=".UI.AddPlayGroundActivity"></activity>
     </application>
 
 </manifest>

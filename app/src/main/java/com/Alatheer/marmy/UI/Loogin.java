@@ -121,67 +121,99 @@ public class Loogin extends AppCompatActivity {
     private void loginByServer() {
         pDialog = new ProgressDialog(Loogin.this);
         pDialog.setIndeterminate(true);
-        pDialog.setMessage("Loogin...");
+        pDialog.setMessage("Login...");
         pDialog.setCancelable(false);
 
-        showpDialog();
         final String user = username.getText().toString();
         String pass = password.getText().toString();
 
-        Services service = APIClient.getClient().create(Services.class);
+        if (TextUtils.isEmpty(user) && TextUtils.isEmpty(pass))
+        {
+            username.setError("enter username");
+            password.setError("enter password");
+        }else if (TextUtils.isEmpty(user))
+        {
+            username.setError("enter username");
+        }else if (!TextUtils.isEmpty(user))
+        {
+            username.setError(null);
+        }else if (TextUtils.isEmpty(user))
+        {
+            password.setError("enter password");
+        }else if (!TextUtils.isEmpty(user)) {
+            password.setError(null);
 
-        Call<MSG> userCall = service.userLogIn(user,pass, FirebaseInstanceId.getInstance().getToken());
+        }
+        if (!TextUtils.isEmpty(user) && !TextUtils.isEmpty(pass))
+        {
+
+            showpDialog();
+
+            Services service = APIClient.getClient().create(Services.class);
+
+            Call<MSG> userCall = service.userLogIn(user,pass, FirebaseInstanceId.getInstance().getToken());
 
 
-        userCall.enqueue(new Callback<MSG>() {
-            @Override
-            public void onResponse(Call<MSG> call, Response<MSG> response) {
-                hidepDialog();
+            userCall.enqueue(new Callback<MSG>() {
+                @Override
+                public void onResponse(Call<MSG> call, Response<MSG> response) {
+                    hidepDialog();
 
-                if (response.isSuccessful()) {
+                    if (response.isSuccessful()) {
+
+                        if (response.body().getSuccess()==1)
+                        {
+                            items = new String[users.size()];
+                            id = response.body().getId();
 
 
-                    items = new String[users.size()];
-                    id = response.body().getId();
+                            if (response.body().getIs_delegate() == 1) {
+                             //   Toast.makeText(Loogin.this, ""+FirebaseInstanceId.getInstance().getToken(), Toast.LENGTH_SHORT).show();
+                                Log.e("mm",FirebaseInstanceId.getInstance().getToken());
+                                Preferense pref = new Preferense(Loogin.this);
+                                pref.CreateSharedPref(id,"1");
+                                Intent intent = new Intent(Loogin.this, Home.class);
+                                intent.putExtra("user_id", id);
+                                intent.putExtra("isdelegate","1");
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish();
+                                //    Toast.makeText(Loogin.this, "" + response.body().getId(), Toast.LENGTH_SHORT).show();
 
-                    if (response.body().getIs_delegate() == 1) {
-                        Toast.makeText(Loogin.this, ""+FirebaseInstanceId.getInstance().getToken(), Toast.LENGTH_SHORT).show();
-                        Log.e("mm",FirebaseInstanceId.getInstance().getToken());
-                        Preferense pref = new Preferense(Loogin.this);
-                        pref.CreateSharedPref(id,"1");
-                        Intent intent = new Intent(Loogin.this, Home.class);
-                        intent.putExtra("user_id", id);
-                        intent.putExtra("isdelegate","1");
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                        finish();
-                    //    Toast.makeText(Loogin.this, "" + response.body().getId(), Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(Loogin.this, ""+FirebaseInstanceId.getInstance().getToken(), Toast.LENGTH_SHORT).show();
+                                Preferense pref = new Preferense(Loogin.this);
+                                pref.CreateSharedPref(id,"0");
+                                Intent intent = new Intent(Loogin.this, Home.class);
+                                intent.putExtra("user_id", id);
+                                intent.putExtra("isdelegate","0");
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish();
+                                // Toast.makeText(Loogin.this, "" + response.body().getId(), Toast.LENGTH_SHORT).show();
 
-                    }else {
-                        Toast.makeText(Loogin.this, ""+FirebaseInstanceId.getInstance().getToken(), Toast.LENGTH_SHORT).show();
-                        Preferense pref = new Preferense(Loogin.this);
-                        pref.CreateSharedPref(id,"0");
-                        Intent intent = new Intent(Loogin.this, Home.class);
-                        intent.putExtra("user_id", id);
-                        intent.putExtra("isdelegate","0");
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                        finish();
-                       // Toast.makeText(Loogin.this, "" + response.body().getId(), Toast.LENGTH_SHORT).show();
+                            }
+                        }else
+                            {
+                                Toast.makeText(Loogin.this, "username or password is not correct", Toast.LENGTH_SHORT).show();
+                            }
 
+
+                        // finish();
+                    } else {
+                        Toast.makeText(Loogin.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
-                    // finish();
-                } else {
-                Toast.makeText(Loogin.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<MSG> call, Throwable t) {
-                hidepDialog();
-               // Log.d("onFailure", t.toString());
-            }
-        });
+                @Override
+                public void onFailure(Call<MSG> call, Throwable t) {
+                    hidepDialog();
+
+                    // Log.d("onFailure", t.toString());
+                }
+            });
+        }
+
     }
 
     private void showpDialog() {

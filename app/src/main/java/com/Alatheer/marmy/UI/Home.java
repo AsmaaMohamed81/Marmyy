@@ -36,7 +36,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         Intent i=getIntent();
-        id=    i.getStringExtra("user_id");
+        id =    i.getStringExtra("user_id");
         delegate=i.getStringExtra("isdelegate");
       // Toast.makeText(this, ""+delegate, Toast.LENGTH_SHORT).show();
 
@@ -53,7 +53,15 @@ public class Home extends AppCompatActivity {
             fragmentList.add(new FragmentDelegatesOrders());
             fragmentList.add(new FragmentProfile());
             fragmentList.add(new FragmentListPlayground());
+
+//            Bundle bundle = new Bundle();
+//            bundle.putString("id",id);
+//            FragmentADD fragmentADD  =new FragmentADD();
+//            fragmentADD.setArguments(bundle);
+//            fragmentList.add(fragmentADD);
             fragmentList.add(new FragmentADD());
+
+
             fragmentList.add(new Fragment_Search());
 
         }else {

@@ -25,14 +25,20 @@
             android:id="@+id/profileimg"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/image"/>
+            android:src="@drawable/image"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15dp"
+            android:gravity="center"
             android:textStyle="bold"
             android:textColor="@color/colorPrimaryDark"
-            android:text="@string/addprofile"/>
+            android:text="@string/addprofile"
+            android:layout_gravity="center"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -46,14 +52,20 @@
             android:id="@+id/cardimg"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/image"/>
+            android:src="@drawable/image"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:textStyle="bold"
+            android:gravity="center"
             android:textColor="@color/colorPrimaryDark"
-            android:text="@string/addcard"/>
+            android:text="@string/addcard"
+            android:layout_gravity="center"
+            />
     </LinearLayout>
     </LinearLayout>
 

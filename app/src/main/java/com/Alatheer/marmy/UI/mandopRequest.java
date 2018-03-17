@@ -1,15 +1,19 @@
 package com.Alatheer.marmy.UI;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +22,7 @@ import android.widget.Toast;
 
 import com.Alatheer.marmy.API.Service.APIClient;
 import com.Alatheer.marmy.API.Service.Services;
+import com.Alatheer.marmy.Fragments.FragmentListOrders;
 import com.Alatheer.marmy.Model.MSG;
 import com.Alatheer.marmy.Model.MessageResponse;
 import com.Alatheer.marmy.R;
@@ -29,54 +34,58 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class mandopRequest extends Activity {
+public class mandopRequest extends Activity implements View.OnClickListener{
 ImageView profileimge,cardimge;
 Button endm;
+Uri img1,img2;
 
 EditText reason;
+ProgressDialog dialog;
 
+
+String id;
     byte[] photo;
-    private Bitmap bp1,bp2;
+    private Bitmap bp1,bp2=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mandop_request);
+        initView();
+        getDataFromIntent();
+        CreateDialog();
 
+    }
+
+    private void CreateDialog() {
+       dialog = new ProgressDialog(this);
+       dialog.setIndeterminate(true);
+       dialog.setMessage("Wait for sending data...");
+       dialog.setCancelable(true);
+       dialog.setCanceledOnTouchOutside(false);
+    }
+
+    private void getDataFromIntent() {
+        Intent intent= getIntent();
+        if (intent!=null)
+        {
+            if (intent.hasExtra("id"))
+            {
+                id=intent.getStringExtra("id");
+
+            }
+
+
+        }
+    }
+
+    private void initView() {
         profileimge=findViewById(R.id.profileimg);
         cardimge=findViewById(R.id.cardimg);
         endm=findViewById(R.id.endam);
         reason=findViewById(R.id.reson);
-
-        profileimge.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK
-                        ,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                photoPickerIntent.setType("image/*");
-                startActivityForResult(photoPickerIntent, 2);
-
-            }
-        });
-
-        cardimge.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK
-                        ,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                photoPickerIntent.setType("image/*");
-                startActivityForResult(photoPickerIntent, 3);
-
-            }
-        });
-
-        endm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveToServerDB();
-
-            }
-        });
-
+        profileimge.setOnClickListener(this);
+        cardimge.setOnClickListener(this);
+        endm.setOnClickListener(this);
     }
 
 
@@ -85,22 +94,22 @@ EditText reason;
         switch(requestCode) {
             case 2:
                 if(resultCode == RESULT_OK){
-                    Uri choosenImage1 = data.getData();
+                    img1 = data.getData();
 
-                    if(choosenImage1 !=null){
+                    if(img1 !=null){
 
-                        bp1=decodeUri(choosenImage1, 200);
+                        bp1=decodeUri(img1, 200);
                         profileimge.setImageBitmap(bp1);
                     }
                 }
                 break;
             case 3:
                 if(resultCode == RESULT_OK){
-                    Uri choosenImage2 = data.getData();
+                    img2= data.getData();
 
-                    if(choosenImage2 !=null){
+                    if(img2 !=null){
 
-                        bp2=decodeUri(choosenImage2, 200);
+                        bp2=decodeUri(img2, 200);
                         cardimge.setImageBitmap(bp2);
                     }
                 }
@@ -162,10 +171,38 @@ EditText reason;
 //        pDialog.setCancelable(false);
 
       //  showpDialog();
-        String Reson = reason.getText().toString();
-        String profile = encode(bp1);
-        String card = encode(bp2);
-        String id = "2";
+
+
+
+
+        if (bp1==null||bp2==null){
+
+            final AlertDialog.Builder alertadd = new AlertDialog.Builder(mandopRequest.this);
+            LayoutInflater factory = LayoutInflater.from(mandopRequest.this);
+            final View viewu = factory.inflate(R.layout.sampl4, null);
+            alertadd.setView(viewu);
+            alertadd.setNeutralButton("OK!", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dlg, int sumthin) {
+
+                }
+            });
+            AlertDialog dialog = alertadd.create();
+
+            dialog.getWindow().getAttributes().windowAnimations = R.style.CustomAnimations_slide; //style id
+
+            dialog.show();
+
+        }else if (TextUtils.isEmpty(reason.getText().toString())){
+
+            reason.setError("Enter Reason");
+        }
+
+        else {
+            dialog.show();
+
+            String Reson = reason.getText().toString();
+            String profile = encode(bp1);
+            String card = encode(bp2);
 
 
         Log.e("dataaaaaaaaaaaaaaaaa",Reson+"\n"+profile+"\n \n \n"+card+"\n"+id);
@@ -191,9 +228,11 @@ EditText reason;
 
                 if (response.isSuccessful()) {
                     Intent i=new Intent(mandopRequest.this, MainActivity.class);
+                    dialog.dismiss();
                     startActivity(i);
                     finish();
                 } else {
+                    dialog.dismiss();
                      Toast.makeText(mandopRequest.this, "response error" , Toast.LENGTH_SHORT).show();
                 }
             }
@@ -201,8 +240,29 @@ EditText reason;
             @Override
             public void onFailure(Call<MessageResponse> call, Throwable t) {
              //   hidepDialog();
+                dialog.dismiss();
                 Log.d("onFailure", t.toString());
             }
         });
+    }}
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId())
+        {
+            case R.id.profileimg:
+                Intent photoPickerIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                photoPickerIntent.setType("image/*");
+                startActivityForResult(photoPickerIntent, 2);
+                break;
+             case R.id.cardimg:
+                 Intent photoPickerIntent2 = new Intent(Intent.ACTION_GET_CONTENT);
+                 photoPickerIntent2.setType("image/*");
+                 startActivityForResult(photoPickerIntent2, 3);
+                 break;
+              case R.id.endam:
+                  saveToServerDB();
+                  break;
+        }
     }
 }

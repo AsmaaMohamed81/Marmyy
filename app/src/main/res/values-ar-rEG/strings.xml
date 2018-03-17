@@ -60,4 +60,6 @@
     <string name="endam">انضم الينا</string>
     <string name="addmandop">اضافه مندوب</string>
     <string name="addmal3abk">اضف ملعبك</string>
+    <string name="chooseimge">you should choose Image Forst</string>
+    <string name="address">اضافه العنوان</string>
 </resources>

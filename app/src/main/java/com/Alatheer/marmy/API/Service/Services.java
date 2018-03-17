@@ -14,6 +14,7 @@ import com.Alatheer.marmy.Model.gallry;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -51,6 +52,18 @@ public interface Services {
     Call<MSG> userLogIn(@Field("user_name") String user_name,
                         @Field("password") String password,
                         @Field("token_id") String token_id);
+    @FormUrlEncoded
+    @POST("AddNewPlayground")
+    Call<MessageResponse>  addplayground(@Field("playground_name") String name,
+                                      @Field("playground_cost") String cost,
+                                      @Field("playground_capacity") String capacity,
+                                      @Field("playground_address")String address,
+                                      @Field("playground_google_lng") String lng,
+                                      @Field("playground_google_lat") String lat,
+                                      @Field("user_id_fk") String user_id,
+                                      @Field("playground_images[]") List<String> imageList
+                                      );
+
 
     @FormUrlEncoded
     @POST("OrdersBeDelegate")
