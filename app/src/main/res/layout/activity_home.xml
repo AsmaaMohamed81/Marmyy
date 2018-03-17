@@ -15,8 +15,8 @@
         android:id="@+id/spaceTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:number_of_tabs="four"
-        app:starting_position="two"
+        app:number_of_tabs="five"
+        app:starting_position="three"
         app:tab_color="@color/colorPrimary"
         android:clipChildren="false"
         android:clipToPadding="false"
@@ -25,16 +25,12 @@
         android:layerType="software"
 
         app:icon_one="@drawable/listorder"
-        app:icon_two="@drawable/list"
-        app:icon_three="@drawable/profile"
-        app:icon_four="@drawable/profile"
-        app:icon_five="@drawable/profile"
+        app:icon_two="@drawable/profile"
+        app:icon_three="@drawable/list"
+        app:icon_four="@drawable/tab_add_icon"
+        app:icon_five="@drawable/tab_search_icon"
 
 
-
-        app:text_one="@string/response"
-        app:text_two="@string/playground"
-        app:text_three="@string/profile"
 
         />
 

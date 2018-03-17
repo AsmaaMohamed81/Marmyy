@@ -17,6 +17,7 @@ import com.Alatheer.marmy.Fragments.FragmentDelegatesOrders;
 import com.Alatheer.marmy.Fragments.FragmentListOrders;
 import com.Alatheer.marmy.Fragments.FragmentListPlayground;
 import com.Alatheer.marmy.Fragments.FragmentProfile;
+import com.Alatheer.marmy.Fragments.Fragment_Search;
 import com.Alatheer.marmy.R;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,17 +51,18 @@ public class Home extends AppCompatActivity {
         if (delegate.equals("1")){
            fragmentList = new ArrayList<>();
             fragmentList.add(new FragmentDelegatesOrders());
-            fragmentList.add(new FragmentListPlayground());
             fragmentList.add(new FragmentProfile());
+            fragmentList.add(new FragmentListPlayground());
             fragmentList.add(new FragmentADD());
+            fragmentList.add(new Fragment_Search());
 
         }else {
             fragmentList = new ArrayList<>();
             fragmentList.add(new FragmentListOrders());
-            fragmentList.add(new FragmentListPlayground());
             fragmentList.add(new FragmentProfile());
+            fragmentList.add(new FragmentListPlayground());
             fragmentList.add(new FragmentADD());
-
+            fragmentList.add(new Fragment_Search());
         }
 
         final CoordinatorLayout coordinatorLayout =  findViewById(R.id.activity_main);
