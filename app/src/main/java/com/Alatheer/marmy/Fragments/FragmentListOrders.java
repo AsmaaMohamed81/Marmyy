@@ -43,23 +43,7 @@ public class FragmentListOrders extends Fragment {
         home= (Home) getActivity();
         Calligrapher calligrapher = new Calligrapher(getContext());
         calligrapher.setFont(getActivity(), "JannaLT-Regular.ttf", true);
-       // Intent intent = getIntent();
-      //  id = intent.getStringExtra("userId");
-//        if (getArguments() != null) {
-//            id = getArguments().getString("userName");        }
-//
-//        Toast.makeText(getContext(), id + "", Toast.LENGTH_LONG).show();
 
-    /*    mLayoutManager=new LinearLayoutManager(getContext());
-        mLayoutManager.setReverseLayout(true);
-        mLayoutManager.setStackFromEnd(true);
-
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setHasFixedSize(true);
-
-        adapter = new ClientOrdersAdapter(getContext(), model);
-        recyclerView.setAdapter(adapter);
-*/
 
         recyclerView = view.findViewById(R.id.recyc_orders);
 
@@ -83,6 +67,7 @@ public class FragmentListOrders extends Fragment {
 
               //  Toast.makeText(getContext(), home.id + "", Toast.LENGTH_LONG).show();
 
+                model.clear();
                 model.addAll( response.body());
                 adapter.notifyDataSetChanged();
                 Log.e("mmm", response.body().toString());

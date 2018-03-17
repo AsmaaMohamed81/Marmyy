@@ -47,7 +47,7 @@ home= (Home) getActivity();
 
         Model=new ArrayList<>();
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
         recyclerView.setHasFixedSize(true);
 
         adapter=new graundAdapter(getContext(),Model);

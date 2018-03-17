@@ -18,7 +18,7 @@
 
     <string name="header">قائمه الملاعب</string>
 
-    <string name="orders">قائمه الطلبات </string>
+    <string name="orders">قائمه حجوزاتى </string>
 
     <string name="detail_sign">لايوجد لديك حساب ؟</string>
     <string name="signup">انشاء حساب .</string>
@@ -30,7 +30,7 @@
     <string name="cost">السعر</string>
 
 ////////////Tabs
-    <string name="response">الردود</string>
+    <string name="response"> حجوزاتى</string>
     <string name="playground">الملاعب</string>
     <string name="profile">صفحتك</string>
 ///////////////////

@@ -40,7 +40,6 @@ public class FragmentProfile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_profile, container, false);
-       // Toast.makeText(getActivity(), "" +id, Toast.LENGTH_SHORT).show();
 
         home= (Home) getActivity();
         name=view.findViewById(R.id.txt_user_name);

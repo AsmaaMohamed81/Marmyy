@@ -63,6 +63,7 @@ Home home;
         call.enqueue(new Callback<List<DelegateOrder>>() {
             @Override
             public void onResponse(Call<List<DelegateOrder>> call, Response<List<DelegateOrder>> response) {
+                model.clear();
                 model.addAll(response.body());
                 adapter.notifyDataSetChanged();
             //    Log.e("mmm", response.body().toString());

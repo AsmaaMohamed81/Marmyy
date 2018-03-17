@@ -281,10 +281,11 @@ public class Detail extends AppCompatActivity {
 
         Call<List<AllDelegateModel>> call = service.getDelegate();
 
-        call.enqueue(new Callback<List<AllDelegateModel>>() {
+        call.enqueue(new  Callback<List<AllDelegateModel>>() {
             @Override
             public void onResponse(Call<List<AllDelegateModel>> call, Response<List<AllDelegateModel>> response) {
                 //Toast.makeText(Detail.this, ""+response.body(), Toast.LENGTH_SHORT).show();
+               delegate.clear();
                 delegate.addAll(response.body());
 
             }
