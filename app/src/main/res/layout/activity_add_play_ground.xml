@@ -54,7 +54,9 @@
             android:textColorHint="@color/colorPrimary"
             android:layout_height="50dp"
             android:padding="10dp"
-            android:background="@color/text"/>
+            android:background="@color/text"
+            android:maxLines="1"
+            />
 
         <EditText
             android:id="@+id/cost"
@@ -65,7 +67,10 @@
             android:textColorHint="@color/colorPrimary"
             android:layout_height="50dp"
             android:padding="10dp"
-            android:background="@color/text"/>
+            android:background="@color/text"
+            android:maxLines="1"
+
+            />
         <EditText
             android:id="@+id/capicity"
             android:layout_marginTop="20dp"
@@ -75,7 +80,10 @@
             android:textColorHint="@color/colorPrimary"
             android:layout_height="50dp"
             android:padding="10dp"
-            android:background="@color/text"/>
+            android:background="@color/text"
+            android:maxLines="1"
+
+            />
         <EditText
             android:id="@+id/adress"
             android:layout_marginTop="20dp"
@@ -85,7 +93,10 @@
             android:textColorHint="@color/colorPrimary"
             android:layout_height="50dp"
             android:padding="10dp"
-            android:background="@color/text"/>
+            android:background="@color/text"
+            android:maxLines="1"
+
+            />
 
 
         <Gallery

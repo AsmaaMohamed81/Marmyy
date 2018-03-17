@@ -1,12 +1,23 @@
 package com.Alatheer.marmy.UI;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ClipData;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -43,30 +54,50 @@ public class AddPlayGroundActivity extends AppCompatActivity implements View.OnC
     ImageView multiImg;
     EditText name, cost, capicity, adress;
     Button add;
-    int IMG_REQ=200;
+    int IMG_REQ = 200;
     List<Uri> uriList;
     CustomGalleryAdapter customGalleryAdapter;
     List<Uri> selectedImage;
     List<String> enCodedImageList;
     String id;
+    ProgressDialog dialog;
+    private final int PER_REQ = 1000;
+    private boolean isGranted = false;
+    LocationManager manager;
+    private AlertDialog.Builder builder;
+    private String lat,lng;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_play_ground);
-        uriList=new ArrayList<>();
+        uriList = new ArrayList<>();
         selectedImage = new ArrayList<>();
         initView();
         getDataFromIntent();
+        CreateDialog();
+        CheckPermission();
 
+    }
+
+    private void CheckPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED
+                ) {
+            isGranted = false;
+            String[] Permissions = new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.INTERNET};
+            ActivityCompat.requestPermissions(AddPlayGroundActivity.this, Permissions, PER_REQ);
+        } else {
+            isGranted = true;
+        }
     }
 
     private void getDataFromIntent() {
         Intent intent = getIntent();
-        if (intent!=null)
-        {
-            if (intent.hasExtra("id"))
-            {
+        if (intent != null) {
+            if (intent.hasExtra("id")) {
                 id = intent.getStringExtra("id");
             }
         }
@@ -86,7 +117,32 @@ public class AddPlayGroundActivity extends AppCompatActivity implements View.OnC
         multiImg.setOnClickListener(this);
         add.setOnClickListener(this);
 
+        manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
+        builder = new AlertDialog.Builder(this);
+        builder.setMessage("هل موقعك الحالي هو موقع الملعب الذي تريد اضافتة");
+        builder.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                getDeviceLocation();
+            }
+        });
+        builder.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                Toast.makeText(AddPlayGroundActivity.this, "show map", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void CreateDialog() {
+        dialog = new ProgressDialog(this);
+        dialog.setIndeterminate(true);
+        dialog.setMessage("جاري اضافة ملعب...");
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(false);
     }
 
     @Override
@@ -96,12 +152,12 @@ public class AddPlayGroundActivity extends AppCompatActivity implements View.OnC
                 AddPlayGround();
                 break;
 
-            case R.id.images :
+            case R.id.images:
 
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
-                startActivityForResult(intent,IMG_REQ);
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                startActivityForResult(intent, IMG_REQ);
 
 
                 break;
@@ -112,97 +168,130 @@ public class AddPlayGroundActivity extends AppCompatActivity implements View.OnC
     }
 
     private void AddPlayGround() {
+
+        /*getDeviceLocation();*/
         String p_name = name.getText().toString();
         String p_cost = cost.getText().toString();
         String p_capacity = capicity.getText().toString();
         String p_address = adress.getText().toString();
-        String lat = "10.121001";
-        String lng = "30.111100";
 
- /*       if (enCodedImageList.size()==0 && TextUtils.isEmpty(p_name) && TextUtils.isEmpty(p_cost) &&TextUtils.isEmpty(p_capacity) &&TextUtils.isEmpty(p_address) )
-        {
-            Toast.makeText(this, "ادخل صور الملعب", Toast.LENGTH_SHORT).show();
+
+        if (enCodedImageList.size() == 0) {
+            Toast.makeText(this, "اختر مجموعة صور للملعب حد ادنى 2 حد اقصى 5", Toast.LENGTH_LONG).show();
+        }
+        if (enCodedImageList.size() == 0 && TextUtils.isEmpty(p_name) && TextUtils.isEmpty(p_cost) && TextUtils.isEmpty(p_capacity) && TextUtils.isEmpty(p_address)) {
             name.setError("ادخل اسم الملعب");
             cost.setError("ادخل سعر الملعب");
             capicity.setError("ادخل سعة الملعب x*x");
             adress.setError("ادخل العنوان");
-        }else if (TextUtils.isEmpty(p_name))
-        {
+        }
+        if (TextUtils.isEmpty(p_name)) {
             name.setError("ادخل اسم الملعب");
 
-        }else if (!TextUtils.isEmpty(p_name))
-        {
+        } else if (!TextUtils.isEmpty(p_name)) {
             name.setError(null);
 
         }
-        else if (TextUtils.isEmpty(p_cost))
-        {
+        if (TextUtils.isEmpty(p_cost)) {
             cost.setError("ادخل سعر الملعب");
 
-        }else if (!TextUtils.isEmpty(p_cost))
-        {
+        } else if (!TextUtils.isEmpty(p_cost)) {
             cost.setError(null);
 
         }
-        else if (TextUtils.isEmpty(p_capacity))
-        {
+        if (TextUtils.isEmpty(p_capacity)) {
             capicity.setError("ادخل سعة الملعب");
 
-        }else if (!TextUtils.isEmpty(p_capacity))
-        {
+        } else if (!TextUtils.isEmpty(p_capacity)) {
             capicity.setError(null);
 
         }
-        else if (TextUtils.isEmpty(p_address))
-        {
+        if (TextUtils.isEmpty(p_address)) {
             adress.setError("ادخل العنوان");
 
-        }else if (!TextUtils.isEmpty(p_address))
-        {
+        } else if (!TextUtils.isEmpty(p_address)) {
             adress.setError(null);
 
-        }if (enCodedImageList.size()>0 && !TextUtils.isEmpty(p_name) && !TextUtils.isEmpty(p_cost) && !TextUtils.isEmpty(p_capacity) &&!TextUtils.isEmpty(p_address))
-            {*/
-                Log.e("name",p_name);
-                Log.e("name",p_cost);
-                Log.e("name",p_capacity);
-                Log.e("name",p_address);
-        Log.e("name",id);
-        Log.e("name",enCodedImageList.get(0)+"\n"+enCodedImageList.get(1)+"\n"+enCodedImageList.get(0));
-                Retrofit retrofit = APIClient.getClient();
-                Services services = retrofit.create(Services.class);
-                Call<MessageResponse> call = services.addplayground(p_name, p_cost, p_capacity, p_address, lng, lat, id, enCodedImageList);
-                call.enqueue(new Callback<MessageResponse>() {
-                    @Override
-                    public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
-                        if (response.isSuccessful())
-                        {
-                            Toast.makeText(AddPlayGroundActivity.this, "ssssssssssssssss", Toast.LENGTH_SHORT).show();
-                            if (response.body().getSuccess()==1)
-                            {
-                                Toast.makeText(AddPlayGroundActivity.this, "add playground successfully", Toast.LENGTH_SHORT).show();
-                            }else
-                                {
+        }
+
+
+        if (enCodedImageList.size() > 0 && !TextUtils.isEmpty(p_name) && !TextUtils.isEmpty(p_cost) && !TextUtils.isEmpty(p_capacity) && !TextUtils.isEmpty(p_address)) {
+
+            builder.show();
+
+           /* dialog.show();
+           */
+        }
+
+
+    }
+
+    private void getDeviceLocation()
+    {
+        if (isGranted) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            if (manager!=null)
+            {
+                Location location = manager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                if (location!=null)
+                {
+                    String p_name = name.getText().toString();
+                    String p_cost = cost.getText().toString();
+                    String p_capacity = capicity.getText().toString();
+                    String p_address = adress.getText().toString();
+                    lat = String.valueOf(location.getLatitude());
+                    lng =String.valueOf(location.getLongitude());
+                    Log.e("name", p_name);
+                    Log.e("name", p_cost);
+                    Log.e("name", p_capacity);
+                    Log.e("name", p_address);
+                    Log.e("name", id);
+                    Log.e("name", enCodedImageList.get(0) + "\n" + enCodedImageList.get(1) + "\n" + enCodedImageList.get(0));
+                    dialog.show();
+                    Retrofit retrofit = APIClient.getClient();
+                    Services services = retrofit.create(Services.class);
+                    Call<MessageResponse> call = services.addplayground(p_name, p_cost, p_capacity, p_address, lng, lat, id, enCodedImageList);
+                    call.enqueue(new Callback<MessageResponse>() {
+                        @Override
+                        public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                            if (response.isSuccessful()) {
+                                if (response.body().getSuccess() == 1) {
+                                    Toast.makeText(AddPlayGroundActivity.this, "add playground successfully", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                } else {
                                     Toast.makeText(AddPlayGroundActivity.this, "add playground failed", Toast.LENGTH_SHORT).show();
-
+                                    dialog.dismiss();
                                 }
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<MessageResponse> call, Throwable t) {
-                        Log.e("error",t.getMessage());
-                        Toast.makeText(AddPlayGroundActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                    }
-                });
-           /* }*/
+                        @Override
+                        public void onFailure(Call<MessageResponse> call, Throwable t) {
+                            Log.e("error", t.getMessage());
+                            dialog.dismiss();
+                            Toast.makeText(AddPlayGroundActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    Log.e("lat",""+location.getLatitude());
+                    Log.e("lat",""+location.getLongitude());
+                }
+            }
 
 
-
-
-
-
-
+        }else
+            {
+                Toast.makeText(this, "عفوا لا يمكن تحديد الموقع الخاص بك", Toast.LENGTH_SHORT).show();
+            }
     }
 
 
@@ -256,7 +345,7 @@ public class AddPlayGroundActivity extends AppCompatActivity implements View.OnC
                     selectedImage.add(uri);
 
                     UpdateUI(selectedImage);*/
-                    Toast.makeText(this, "اختر مجموعة صور للملعب حد ادنى 2 حد اقصى 5", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "اختر مجموعة صور للملعب حد ادنى 2 حد اقصى 5", Toast.LENGTH_LONG).show();
                 }
 
 
@@ -311,5 +400,20 @@ public class AddPlayGroundActivity extends AppCompatActivity implements View.OnC
         }
         return  enCodedImageList;
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length>0)
+        {
+            for (int i=0;i<grantResults.length;i++)
+            {
+                if (grantResults[i]!=PackageManager.PERMISSION_GRANTED)
+                {
+                    isGranted=false;
+                }
+            }
+        }
     }
 }
