@@ -3,13 +3,28 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:paddingTop="20dp"
+    android:background="@drawable/back"
+
     android:orientation="vertical"
     >
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="Fragment Search"
+<EditText
+    android:id="@+id/search"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:textColorHint="@color/colorPrimary"
+    android:hint="Fragment Search"
+    android:padding="15dp"
+    android:background="@color/text"
     android:gravity="center"
     android:textSize="18sp"
     />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/RecycleSearch"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 </LinearLayout>
